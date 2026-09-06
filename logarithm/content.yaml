@@ -346,7 +346,6 @@ blocks:
         </div>
         <div class="fragment" data-fragment-index="5">
           <p style="color:#2a7a2a;">That&rsquo;s right! log<sub>2</sub>(6) &asymp; <strong>2.585</strong>.</p>
-          <p style="font-size:0.85em;">Verify: <code>math.log(6, 2)</code> &rarr; <strong>2.585</strong>. Logarithms don&rsquo;t have to be whole numbers!</p>
         </div>
       </div>
 
@@ -368,6 +367,7 @@ blocks:
         .reveal .code-step  { position: absolute; top: 0; left: 0; right: 0; }
       </style>
       <div style="font-size:1.3em;">
+        <p style="font-size:0.85em;">Verify: <code>math.log(6, 2)</code> &rarr; <strong>2.585</strong>. Logarithms don&rsquo;t have to be whole numbers!</p>
         <p>You&rsquo;ve been doing hit-and-trial by hand. Let&rsquo;s make Python do it!</p>
         <p><strong>Write a function <code>my_log(value, base)</code></strong> that tries
         <code>x</code> from 0 to 20 in tiny steps (0.001) and returns the
