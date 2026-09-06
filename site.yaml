@@ -24,6 +24,10 @@ tracks:
         href: getting_started/index.html
         badge: interactive
         colab_url: https://colab.research.google.com/github/cloudxlab/learnbyinventing/blob/main/getting_started/getting_started.ipynb
+      - title: "Line Fitting &amp; Curve Fitting"
+        href: line_fitting/index.html
+        badge: interactive
+        slides_url: line_fitting/slides.html
       - title: Finding Square Roots
         href: square_root/index.html
         badge: interactive
@@ -103,10 +107,6 @@ tracks:
     title: Machine Learning
     description: "Reinvent ML algorithms from scratch &mdash; no black boxes, no magic."
     chapters:
-      - title: "Line Fitting &amp; Curve Fitting"
-        href: line_fitting/index.html
-        badge: interactive
-        slides_url: line_fitting/slides.html
       - title: The Encoder-Decoder Pipeline
         href: encoder_decoder/index.html
         badge: notebook
