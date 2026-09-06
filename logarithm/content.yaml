@@ -81,7 +81,7 @@ blocks:
           </div>
           <div class="qa-step fragment" data-fragment-index="8">
             <p style="color:#2a7a2a;">That&rsquo;s right! 100000 has <strong>5</strong> zeros.</p>
-            <p>This &ldquo;number of zeros&rdquo; has a fancy name: <strong>logarithm base 10</strong>.</p>
+            <p>This &ldquo;number of zeros&rdquo; has a fancy name: <strong>logarithm</strong>.</p>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@ blocks:
   - type: text
     text: |
       <div style="font-size:1.5em;">
-        <p>So when someone asks &ldquo;what is log<sub>10</sub>(1000)?&rdquo; they are really asking:</p>
+        <p>So when someone asks &ldquo;what is log(1000)?&rdquo; they are really asking:</p>
         <p style="text-align:center; font-size:1.1em; color:#7a6b3a;">
           <strong>10 to the power of <em>what</em> gives 1000?</strong>
         </p>
@@ -124,10 +124,10 @@ blocks:
           <p>That&rsquo;s it. That&rsquo;s all a logarithm is. Let&rsquo;s fill out a few more:</p>
           <table style="margin:0.5em auto; font-size:0.85em;">
             <tr><th style="padding:0.2em 0.8em;">Question</th><th style="padding:0.2em 0.8em;">In other words</th><th style="padding:0.2em 0.8em;">Answer</th></tr>
-            <tr><td>log<sub>10</sub>(10)</td><td>10<sup>?</sup> = 10</td><td>1</td></tr>
-            <tr><td>log<sub>10</sub>(100)</td><td>10<sup>?</sup> = 100</td><td>2</td></tr>
-            <tr><td>log<sub>10</sub>(1000)</td><td>10<sup>?</sup> = 1000</td><td>3</td></tr>
-            <tr><td>log<sub>10</sub>(10000)</td><td>10<sup>?</sup> = 10000</td><td>4</td></tr>
+            <tr><td>log(10)</td><td>10<sup>?</sup> = 10</td><td>1</td></tr>
+            <tr><td>log(100)</td><td>10<sup>?</sup> = 100</td><td>2</td></tr>
+            <tr><td>log(1000)</td><td>10<sup>?</sup> = 1000</td><td>3</td></tr>
+            <tr><td>log(10000)</td><td>10<sup>?</sup> = 10000</td><td>4</td></tr>
           </table>
         </div>
       </div>
@@ -163,10 +163,10 @@ blocks:
           </div>
           <div class="qa-step fragment fade-in-then-out" data-fragment-index="2">
             <p style="color:#2a7a2a;">That&rsquo;s right! <strong>0</strong>, because any number to the power of 0 is 1. Try <code>10**0</code> in Python &mdash; you get 1.</p>
-            <p><strong>So what is log<sub>10</sub>(1)?</strong></p>
+            <p><strong>So what is log(1)?</strong></p>
           </div>
           <div class="qa-step fragment" data-fragment-index="3">
-            <p style="color:#2a7a2a;">That&rsquo;s right! <strong>log<sub>10</sub>(1) = 0</strong>.</p>
+            <p style="color:#2a7a2a;">That&rsquo;s right! <strong>log(1) = 0</strong>.</p>
             <p>Key fact: <strong>log of 1 is always 0</strong>, no matter what the base is. Because anything<sup>0</sup> = 1.</p>
           </div>
         </div>
@@ -176,11 +176,11 @@ blocks:
   - type: text
     text: |
       <div style="font-size:1.5em;">
-        <p><strong>What is log<sub>10</sub>(500)?</strong></p>
+        <p><strong>What is log(500)?</strong></p>
         <p style="font-size:0.85em;">In other words: 10 to the power of <em>what</em> gives 500?</p>
         <div class="fragment" data-fragment-index="0">
-          <p>You know: log<sub>10</sub>(100) = 2 and log<sub>10</sub>(1000) = 3.</p>
-          <p>So log<sub>10</sub>(500) must be <strong>between 2 and 3</strong>. But where exactly?</p>
+          <p>You know: log(100) = 2 and log(1000) = 3.</p>
+          <p>So log(500) must be <strong>between 2 and 3</strong>. But where exactly?</p>
           <p>Let&rsquo;s do <strong>hit-and-trial</strong> &mdash; try values of x until <code>10**x</code> gets close to 500:</p>
         </div>
         <div class="fragment" data-fragment-index="1">
@@ -193,7 +193,7 @@ blocks:
           </table>
         </div>
         <div class="fragment" data-fragment-index="5">
-          <p style="color:#2a7a2a;">That&rsquo;s right! log<sub>10</sub>(500) &asymp; <strong>2.699</strong>.</p>
+          <p style="color:#2a7a2a;">That&rsquo;s right! log(500) &asymp; <strong>2.699</strong>.</p>
           <p style="font-size:0.85em;">Verify: <code>import math; math.log10(500)</code> &rarr; <strong>2.6990</strong></p>
         </div>
       </div>
@@ -204,7 +204,7 @@ blocks:
       <div style="font-size:1.5em;">
         <p>Look at this pattern:</p>
         <table style="margin:0.5em auto; font-size:0.95em;">
-          <tr><th style="padding:0.3em 1em;">Number</th><th style="padding:0.3em 1em;">log<sub>10</sub></th></tr>
+          <tr><th style="padding:0.3em 1em;">Number</th><th style="padding:0.3em 1em;">log</th></tr>
           <tr><td>5</td><td><span class="fragment fade-out" data-fragment-index="1">?</span><span class="fragment" data-fragment-index="1">0.699</span></td></tr>
           <tr><td>50</td><td><span class="fragment fade-out" data-fragment-index="3">?</span><span class="fragment" data-fragment-index="3">1.699</span></td></tr>
           <tr><td>500</td><td>2.699</td></tr>
@@ -212,15 +212,15 @@ blocks:
         </table>
         <div class="qa-stack">
           <div class="qa-step fragment fade-out" data-fragment-index="1">
-            <p><strong>What is log<sub>10</sub>(5)?</strong> It&rsquo;s between 0 and 1. Try <code>10**0.7</code> in Python.</p>
+            <p><strong>What is log(5)?</strong> It&rsquo;s between 0 and 1. Try <code>10**0.7</code> in Python.</p>
           </div>
           <div class="qa-step fragment fade-in-then-out" data-fragment-index="1">
-            <p style="color:#2a7a2a;">That&rsquo;s right! log<sub>10</sub>(5) = <strong>0.699</strong>. Because 10<sup>0.699</sup> &asymp; 5.</p>
-            <p><strong>What is log<sub>10</sub>(50)?</strong> It&rsquo;s between 1 and 2.</p>
+            <p style="color:#2a7a2a;">That&rsquo;s right! log(5) = <strong>0.699</strong>. Because 10<sup>0.699</sup> &asymp; 5.</p>
+            <p><strong>What is log(50)?</strong> It&rsquo;s between 1 and 2.</p>
           </div>
           <div class="qa-step fragment fade-in-then-out" data-fragment-index="3">
-            <p style="color:#2a7a2a;">That&rsquo;s right! log<sub>10</sub>(50) = <strong>1.699</strong>. Notice anything? 0.699 &rarr; 1.699 &mdash; it went up by exactly 1!</p>
-            <p><strong>Can you predict log<sub>10</sub>(5000)?</strong></p>
+            <p style="color:#2a7a2a;">That&rsquo;s right! log(50) = <strong>1.699</strong>. Notice anything? 0.699 &rarr; 1.699 &mdash; it went up by exactly 1!</p>
+            <p><strong>Can you predict log(5000)?</strong></p>
           </div>
           <div class="qa-step fragment fade-in-then-out" data-fragment-index="5">
             <p>We had 0.699, 1.699, 2.699 &mdash; <strong>what comes next?</strong></p>
@@ -240,7 +240,11 @@ blocks:
     number: 3
     title: "Beyond Base 10"
     estimated_time: "~10 min"
-    intro: null
+    intro: |
+      Up to now, every &ldquo;log&rdquo; you computed was secretly <strong>log base 10</strong> &mdash;
+      counting zeros only works because our number system is built on powers of 10.
+      From here on we&rsquo;ll write the base explicitly, like log<sub>2</sub> or log<sub>3</sub>,
+      because the base is about to change.
 
   # ── Slide 7: Log base 2 ─────────────────────────
   - type: text
