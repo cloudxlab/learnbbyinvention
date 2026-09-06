@@ -82,7 +82,49 @@
 
 
 
+        <section>
+          <div class="slide-content"><div class="cartpole-demo">
+  <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+    <!-- track -->
+    <line x1="20" y1="155" x2="380" y2="155" stroke="#888" stroke-width="2"/>
+    <line x1="20" y1="155" x2="20" y2="148" stroke="#888" stroke-width="2"/>
+    <line x1="380" y1="155" x2="380" y2="148" stroke="#888" stroke-width="2"/>
+    <!-- cart -->
+    <rect x="160" y="130" width="80" height="30" rx="4" fill="#c8a96e" stroke="#7a6b3a" stroke-width="1.5"/>
+    <!-- wheels -->
+    <circle cx="178" cy="160" r="6" fill="#555"/>
+    <circle cx="222" cy="160" r="6" fill="#555"/>
+    <!-- pole (animated) -->
+    <g class="cartpole-pole">
+      <line x1="200" y1="130" x2="200" y2="40" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="200" cy="40" r="6" fill="#c0392b"/>
+    </g>
+    <!-- pivot -->
+    <circle cx="200" cy="130" r="4" fill="#333"/>
+    <!-- arrows -->
+    <text x="120" y="150" font-size="18" fill="#888" font-family="system-ui">&larr;</text>
+    <text x="268" y="150" font-size="18" fill="#888" font-family="system-ui">&rarr;</text>
+  </svg>
+  <p class="cartpole-caption">The CartPole environment: keep the pole balanced by pushing the cart left or right.</p>
+</div>
+</div>
+        </section>
 
+
+
+        <section>
+          <div class="slide-content"><p>This chapter uses the <code>gymnasium</code> library (the game engine). Install it before
+starting:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1"># In a notebook cell or your terminal:</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">gymnasium</span>
+</code></pre>
+</div>
+
+<p>On a local VS Code setup, run <code>pip install gymnasium</code> in your terminal.</p>
+</div>
+        </section>
 
 
 
@@ -404,6 +446,22 @@ repeated. Before we go further, give each piece a short name:</p>
         </section>
 
 
+
+        <section>
+          <div class="slide-content"><p><strong>A note about <code>lambda</code> in loops.</strong> In the exercises ahead, you'll see code like:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">policy</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">obs</span><span class="p">,</span> <span class="n">w1</span><span class="o">=</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="o">=</span><span class="n">w2</span><span class="p">:</span> <span class="n">two_weight_policy</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>The <code>w1=w1, w2=w2</code> part is important. Without it, all the lambdas in a loop would
+share the <em>same</em> variables and use whatever value they have at the <em>end</em> of the loop
+— not the value when the lambda was created. The <code>w1=w1</code> trick captures the current
+value. This is a common Python gotcha with closures; you'll see it in several
+exercises from here on.</p>
+</div>
+        </section>
 
 
 
@@ -812,6 +870,14 @@ apply it to the discounted rewards.</p>
 
 
 
+        <section>
+          <div class="slide-content"><p><strong>New vocabulary ahead.</strong> Parts 7–9 introduce several new terms (REINFORCE, value
+function, TD error, advantage, actor, critic). Each is defined inline when it first
+appears. If you ever need a quick refresher, open the <strong>Glossary</strong> panel (top of the
+page) — it has one-line definitions of every term in this chapter.</p>
+</div>
+        </section>
+
 
 
         <section>
@@ -912,6 +978,19 @@ outputs a value between 0 and 1.</p>
 
 
 
+        <section>
+          <div class="slide-content"><p><strong>Why $\log(p)$ and not just $p$?</strong> Quick recap before we dive into gradients.</p>
+
+<p>Across a 200-step game, the total probability of your sequence of actions is
+$p_1 \times p_2 \times \ldots \times p_{200}$ — a product of 200 numbers between
+0 and 1. This product quickly becomes astronomically small (like $10^{-60}$),
+causing numerical problems. Taking the log turns this into a sum:
+$\log(p_1) + \log(p_2) + \ldots + \log(p_{200})$ — a sensible number that your
+computer can work with. You'll use $\log(p)$ in the next exercise — just remember:
+it's the same information as $p$, just in a form that doesn't explode or vanish.</p>
+</div>
+        </section>
+
 
 
         <section>
@@ -1011,6 +1090,13 @@ steps and the total reward.</p>
 
 
 
+        <section>
+          <div class="slide-content"><p>Here's what a typical REINFORCE training curve looks like. Notice the high variance — scores bounce around wildly because each episode is different and the model is still exploring.</p>
+
+<p><img src="img/reinforce_curve.png" alt="Typical REINFORCE learning curve — noisy but trending upward" /></p>
+</div>
+        </section>
+
 
 
         <section>
@@ -1044,6 +1130,15 @@ steps and the total reward.</p>
 
 
 
+        <section>
+          <div class="slide-content"><p><strong>Expect noise.</strong> RL training is inherently noisy — your scores will bounce
+around, and sometimes the agent's performance dips before recovering. If your
+scores collapse and stay low, try re-running the training cell (a different random
+seed can make a big difference). This instability is normal and is one of the main
+reasons researchers developed the improvements in Parts 8 and 9.</p>
+</div>
+        </section>
+
 
       </section>
 
@@ -1060,6 +1155,73 @@ steps and the total reward.</p>
         </section>
 
 
+
+        <section>
+          <div class="slide-content"><p><strong>If you restarted your notebook</strong> since Part 7, run this cell to restore the
+functions and trained weights you'll need:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">gymnasium</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gym</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;CartPole-v1&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">prob_right</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">obs</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_discounted_rewards</span><span class="p">(</span><span class="n">rewards</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
+    <span class="n">discounted</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+    <span class="n">running</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rewards</span><span class="p">))):</span>
+        <span class="n">running</span> <span class="o">=</span> <span class="n">rewards</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">running</span>
+        <span class="n">discounted</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">running</span>
+    <span class="k">return</span> <span class="n">discounted</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">values</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">values</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">play_episode</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="n">obs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="n">observations</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">gradients</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">prob_right</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">grad</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">obs</span> <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="o">-</span><span class="n">p</span> <span class="o">*</span> <span class="n">obs</span>
+        <span class="n">observations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+        <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">gradients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">grad</span><span class="p">)</span>
+        <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span>
+    <span class="k">return</span> <span class="n">observations</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">gradients</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">reinforce_update</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">gradients</span> <span class="o">=</span> <span class="n">play_episode</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="n">disc_rewards</span> <span class="o">=</span> <span class="n">compute_discounted_rewards</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+    <span class="n">norm_rewards</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">disc_rewards</span><span class="p">)</span>
+    <span class="n">total_gradient</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">grad</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="n">norm_rewards</span><span class="p">):</span>
+        <span class="n">total_gradient</span> <span class="o">+=</span> <span class="n">grad</span> <span class="o">*</span> <span class="n">r</span>
+    <span class="n">weights</span> <span class="o">+=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">total_gradient</span>
+    <span class="k">return</span> <span class="n">weights</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+
+<span class="c1"># Re-train REINFORCE (takes ~10 seconds)</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">weights</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">reinforce_update</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;REINFORCE weights restored: </span><span class="si">{</span><span class="n">weights</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>If your kernel is still running from Part 7, skip this cell.</p>
+</div>
+        </section>
 
 
 
@@ -1239,6 +1401,24 @@ is what you built here.</p>
 
 
 
+        <section>
+          <div class="slide-content"><p><strong>If you restarted your notebook</strong> since Part 8, run the Part 8 checkpoint cell
+first, then also define:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict_value</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">value_weights</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">value_weights</span><span class="p">,</span> <span class="n">obs</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_action</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">prob_right</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="k">else</span> <span class="mi">0</span>
+</code></pre>
+</div>
+
+<p>If your kernel is still running from Part 8, skip this cell.</p>
+</div>
+        </section>
+
 
 
         <section>
@@ -1263,6 +1443,13 @@ is what you built here.</p>
         </section>
 
 
+
+        <section>
+          <div class="slide-content"><p>Here's a typical Actor-Critic learning curve. Compare it to the REINFORCE curve — notice how Actor-Critic converges faster and with less variance, because the critic provides a per-step learning signal instead of waiting until the episode ends.</p>
+
+<p><img src="img/actor_critic_curve.png" alt="Typical Actor-Critic learning curve — faster convergence, less variance" /></p>
+</div>
+        </section>
 
 
 

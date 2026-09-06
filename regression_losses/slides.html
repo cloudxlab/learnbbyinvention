@@ -86,6 +86,51 @@ impacts the overall error.</p>
 
 
 
+        <section>
+          <div class="slide-content"><p>Here are the actual prices and your model's predictions:</p>
+
+<table>
+<thead>
+<tr>
+  <th>House</th>
+  <th>Actual</th>
+  <th>Predicted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>1.0</td>
+  <td>0.9</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>1.1</td>
+  <td>2.0</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>0.9</td>
+  <td>0.7</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>0.5</td>
+  <td>0.3</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td>3.0</td>
+  <td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>Your job: come up with a formula that gives <strong>one number</strong> representing how wrong
+the predictions are overall.</p>
+</div>
+        </section>
+
 
 
         <section>
@@ -155,6 +200,23 @@ total, regardless of whether the prediction was too high or too low.</p>
         </section>
 
 
+
+        <section>
+          <div class="slide-content"><p>Let's give proper names and formulas to your two ideas.</p>
+
+<p><strong>Mean Squared Error (MSE):</strong></p>
+
+<p>$$\text{MSE} = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2$$</p>
+
+<p><strong>Mean Absolute Error (MAE):</strong></p>
+
+<p>$$\text{MAE} = \frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i|$$</p>
+
+<p>Here $y_i$ is the actual value and $\hat{y}_i$ is the predicted value.</p>
+
+<p>Below are implementations of both. Study them — you'll use them to compare behavior.</p>
+</div>
+        </section>
 
 
 
@@ -233,6 +295,23 @@ loss change?</p>
         </section>
 
 
+
+        <section>
+          <div class="slide-content"><p>To keep things simple, let's focus on a <strong>single prediction</strong>. Define:</p>
+
+<p>$$\text{diff} = y - \hat{y}$$</p>
+
+<p>Then our two per-element losses are:</p>
+
+<ul>
+<li><strong>Squared loss:</strong> $L_{\text{sq}} = \text{diff}^2$</li>
+<li><strong>Absolute loss:</strong> $L_{\text{abs}} = |\text{diff}|$</li>
+</ul>
+
+<p>We want to compute $\frac{dL}{d(\text{diff})}$ for each — how the loss changes as
+the prediction error changes.</p>
+</div>
+        </section>
 
 
 
@@ -429,6 +508,23 @@ two formulas switch.</p>
         </section>
 
 
+
+        <section>
+          <div class="slide-content"><p>The problem is clear: at the switchover point $|\text{diff}| = d$, the squared and
+absolute formulas disagree in both <strong>value</strong> and <strong>gradient</strong>.</p>
+
+<p>We can't change the squared part — it's what gives us smoothness near zero, which
+is the whole reason we want it. So let's keep $\text{diff}^2$ for $|\text{diff}| \le d$
+and <strong>modify</strong> the absolute part to connect seamlessly.</p>
+
+<p>Instead of plain $|\text{diff}|$, we'll use:</p>
+
+<p>$$L_{\text{outer}}(\text{diff}) = A \cdot |\text{diff}| + B$$</p>
+
+<p>We need to find values of $A$ and $B$ such that at the boundary $|\text{diff}| = d$,
+the two pieces agree in both value and gradient.</p>
+</div>
+        </section>
 
 
 
