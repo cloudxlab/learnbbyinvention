@@ -29,10 +29,10 @@ chapter:
       definition: "The value of y when x = 0 — where the line crosses the y-axis."
     - term: Linear function
       definition: "A function of the form y = mx + c — it draws a straight line."
-    - term: Residual
+    - term: Error
       definition: "The difference between an actual y value and the predicted y value."
     - term: Mean Squared Error (MSE)
-      definition: "The average of the squared residuals — measures how well a model fits the data."
+      definition: "The average of the squared errors — measures how well a model fits the data."
     - term: Polynomial
       definition: "A function like y = ax² + bx + c — uses powers of x to fit curves."
     - term: Overfitting
@@ -390,9 +390,9 @@ blocks:
   - type: text
     text: |
       <div style="font-size:1.5em;">
-        <p>For line y&nbsp;=&nbsp;3x&nbsp;&minus;&nbsp;1, the <strong>residual</strong> at each point is the difference between actual and predicted:</p>
+        <p>For line y&nbsp;=&nbsp;3x&nbsp;&minus;&nbsp;1, the <strong>error</strong> at each point is the difference between actual and predicted:</p>
         <table style="margin:0.5em auto;">
-          <tr><th>x</th><th>Actual</th><th>Predicted</th><th>Residual</th></tr>
+          <tr><th>x</th><th>Actual</th><th>Predicted</th><th>Error</th></tr>
           <tr><td>1</td><td>2</td><td>2</td><td>0</td></tr>
           <tr><td>2</td><td>5</td><td>5</td><td>0</td></tr>
           <tr><td>3</td><td>7</td><td>8</td><td>&minus;1</td></tr>
