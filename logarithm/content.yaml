@@ -506,12 +506,12 @@ blocks:
         </div>
       </div>
 
-  # ── Slide 15: Pattern + summary ─────────────────
+  # ── Slide 15: Pattern ─────────────────────────────
   - type: text
     text: |
-      <div style="font-size:1.3em;">
+      <div style="font-size:1.4em;">
         <p>Use your function to explore a pattern:</p>
-        <table style="margin:0.5em auto; font-size:0.9em;">
+        <table style="margin:0.5em auto; font-size:0.95em;">
           <tr><th style="padding:0.3em 1em;">Number</th><th style="padding:0.3em 1em;">log<sub>10</sub></th></tr>
           <tr><td>5</td><td>0.699</td></tr>
           <tr><td>50</td><td>1.699</td></tr>
@@ -520,20 +520,30 @@ blocks:
         </table>
         <div class="fragment" data-fragment-index="1">
           <p>Every time you <strong>multiply the number by 10</strong>,
-          the log goes up by <strong>exactly 1</strong>.
-          That makes sense &mdash; you&rsquo;re adding one more power of 10!</p>
+          the log goes up by <strong>exactly 1</strong>.</p>
+          <p>That makes sense &mdash; you&rsquo;re adding one more power of 10!</p>
         </div>
-        <div class="fragment" data-fragment-index="2">
-          <p><strong>Congratulations!</strong> In one sitting you learned:</p>
-          <table style="margin:0.3em auto; font-size:0.8em; text-align:left;">
-            <tr><th style="padding:0.2em 0.6em;">What you did</th><th style="padding:0.2em 0.6em;">Python concept</th></tr>
-            <tr><td>Counted zeros (10, 100, 1000)</td><td><strong>Expressions</strong></td></tr>
-            <tr><td>Guessed log(500), checked with <code>10**x</code></td><td><strong>Variables</strong></td></tr>
-            <tr><td>Tracked the range with lo and hi</td><td><strong>Variables</strong> (lo, hi)</td></tr>
-            <tr><td>Automated the high/low decision</td><td><strong>if / else</strong></td></tr>
-            <tr><td>Repeated the guessing 20 times</td><td><strong>for loop</strong></td></tr>
-            <tr><td>Packaged it as <code>my_log</code></td><td><strong>Functions</strong> (def)</td></tr>
-          </table>
+      </div>
+
+  # ── Slide 16: What you learned ───────────────────
+  - type: text
+    text: |
+      <div style="font-size:1.3em;">
+        <p><strong>Congratulations!</strong> In one sitting you learned:</p>
+        <table style="margin:0.5em auto; font-size:0.85em; text-align:left;">
+          <tr><th style="padding:0.2em 0.6em;">What you did</th><th style="padding:0.2em 0.6em;">Python concept</th></tr>
+          <tr><td>Counted zeros (10, 100, 1000)</td><td><strong>Expressions</strong></td></tr>
+          <tr><td>Guessed log(500), checked with <code>10**x</code></td><td><strong>Variables</strong></td></tr>
+          <tr><td>Tracked the range with lo and hi</td><td><strong>Variables</strong> (lo, hi)</td></tr>
+          <tr><td>Automated the high/low decision</td><td><strong>if / else</strong></td></tr>
+          <tr><td>Repeated the guessing 20 times</td><td><strong>for loop</strong></td></tr>
+          <tr><td>Packaged it as <code>my_log</code></td><td><strong>Functions</strong> (def)</td></tr>
+        </table>
+        <div class="fragment" data-fragment-index="0">
+          <p>The algorithm you built &mdash; <strong>binary search</strong> &mdash;
+          doesn&rsquo;t just work for logarithms. It&rsquo;s one of the most
+          important algorithms in computer science.</p>
+          <p style="font-size:0.9em;"><strong>And you just invented it.</strong></p>
         </div>
       </div>
 
