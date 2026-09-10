@@ -19,7 +19,7 @@
 </head>
 <body data-chapter-id="logarithm">
 
-<div class="progress-indicator" id="progress-indicator" data-total="5"></div>
+<div class="progress-indicator" id="progress-indicator" data-total="7"></div>
 
 <nav class="topnav">
   <a href="../index.html">&larr; All chapters</a>
@@ -145,7 +145,7 @@ starting with nothing more than counting zeros.</p>
 
 
 <div class="part" data-part-number="2">
-  <h2>Part 2: The Power Question<span class="time-estimate">~10 min</span></h2>
+  <h2>Part 2: The Power Question<span class="time-estimate">~5 min</span></h2>
 
 </div>
 
@@ -184,57 +184,14 @@ starting with nothing more than counting zeros.</p>
 <div style="font-size:1.5em;">
   <p><strong>What is log(500)?</strong></p>
   <p style="font-size:0.85em;">In other words: 10 to the power of <em>what</em> gives 500?</p>
+  <p>It&rsquo;s not a whole number. But you already know something about it.</p>
   <div class="fragment" data-fragment-index="0">
-    <p>You know: log(100) = 2 and log(1000) = 3.</p>
-    <p>So log(500) must be <strong>between 2 and 3</strong>. But where exactly?</p>
-    <p>Let&rsquo;s do <strong>hit-and-trial</strong> &mdash; try values of x until <code>10**x</code> gets close to 500:</p>
-  </div>
-  <div class="fragment" data-fragment-index="1">
-    <table style="margin:0.5em auto; font-size:0.85em;">
-      <tr><th style="padding:0.2em 0.6em;">Try x =</th><th style="padding:0.2em 0.6em;">10<sup>x</sup></th><th style="padding:0.2em 0.6em;">Verdict</th></tr>
-      <tr><td>2.5</td><td>316</td><td>too small &mdash; need to go higher</td></tr>
-      <tr class="fragment" data-fragment-index="2"><td>2.7</td><td>501</td><td>very close! Just a tiny bit over 500</td></tr>
-      <tr class="fragment" data-fragment-index="3"><td>2.69</td><td>490</td><td>a bit under &mdash; between 2.69 and 2.7</td></tr>
-      <tr class="fragment" data-fragment-index="4"><td>2.699</td><td>500.3</td><td style="color:#2a7a2a;">almost exact!</td></tr>
+    <table style="margin:0.5em auto; font-size:0.9em;">
+      <tr><td style="padding:0.2em 0.8em;">10<sup>2</sup> = 100</td><td>&rarr; too <strong>small</strong></td></tr>
+      <tr><td style="padding:0.2em 0.8em;">10<sup>3</sup> = 1000</td><td>&rarr; too <strong>big</strong></td></tr>
     </table>
-  </div>
-  <div class="fragment" data-fragment-index="5">
-    <p style="color:#2a7a2a;">That&rsquo;s right! log(500) &asymp; <strong>2.699</strong>.</p>
-    <p style="font-size:0.85em;">Verify: <code>import math; math.log10(500)</code> &rarr; <strong>2.6990</strong></p>
-  </div>
-</div>
-
-
-
-
-<div style="font-size:1.5em;">
-  <p>Look at this pattern:</p>
-  <table style="margin:0.5em auto; font-size:0.95em;">
-    <tr><th style="padding:0.3em 1em;">Number</th><th style="padding:0.3em 1em;">log</th></tr>
-    <tr><td>5</td><td><span class="fragment fade-out" data-fragment-index="1">?</span><span class="fragment" data-fragment-index="1">0.699</span></td></tr>
-    <tr><td>50</td><td><span class="fragment fade-out" data-fragment-index="3">?</span><span class="fragment" data-fragment-index="3">1.699</span></td></tr>
-    <tr><td>500</td><td>2.699</td></tr>
-    <tr class="fragment" data-fragment-index="5"><td>5000</td><td><span class="fragment fade-out" data-fragment-index="6">?</span><span class="fragment" data-fragment-index="6">3.699</span></td></tr>
-  </table>
-  <div class="qa-stack">
-    <div class="qa-step fragment fade-out" data-fragment-index="1">
-      <p><strong>What is log(5)?</strong> It&rsquo;s between 0 and 1. Try <code>10**0.7</code> in Python.</p>
-    </div>
-    <div class="qa-step fragment fade-in-then-out" data-fragment-index="1">
-      <p style="color:#2a7a2a;">That&rsquo;s right! log(5) = <strong>0.699</strong>. Because 10<sup>0.699</sup> &asymp; 5.</p>
-      <p><strong>What is log(50)?</strong> It&rsquo;s between 1 and 2.</p>
-    </div>
-    <div class="qa-step fragment fade-in-then-out" data-fragment-index="3">
-      <p style="color:#2a7a2a;">That&rsquo;s right! log(50) = <strong>1.699</strong>. Notice anything? 0.699 &rarr; 1.699 &mdash; it went up by exactly 1!</p>
-      <p><strong>Can you predict log(5000)?</strong></p>
-    </div>
-    <div class="qa-step fragment fade-in-then-out" data-fragment-index="5">
-      <p>We had 0.699, 1.699, 2.699 &mdash; <strong>what comes next?</strong></p>
-    </div>
-    <div class="qa-step fragment" data-fragment-index="6">
-      <p style="color:#2a7a2a;">That&rsquo;s right! <strong>3.699</strong>. Every time you <strong>multiply the number by 10</strong>, the log goes up by <strong>exactly 1</strong>.</p>
-      <p>That makes sense &mdash; you&rsquo;re adding one more power of 10!</p>
-    </div>
+    <p>So log(500) is <strong>between 2 and 3</strong>.</p>
+    <p>Just take a guess!</p>
   </div>
 </div>
 
@@ -242,7 +199,354 @@ starting with nothing more than counting zeros.</p>
 
 
 <div class="part" data-part-number="3">
-  <h2>Part 3: Beyond Base 10<span class="time-estimate">~10 min</span></h2>
+  <h2>Part 3: The Guessing Game<span class="time-estimate">~10 min</span></h2>
+
+  <p>You know log(500) is between 2 and 3. Let&rsquo;s find it by guessing,
+checking, and narrowing down.</p>
+
+
+</div>
+
+
+
+<div style="font-size:1.4em;">
+  <p><strong>Check your guess:</strong> compute <code>10**x</code> in Python.</p>
+<pre><code>guess = 2.5
+print(10**guess)</code></pre>
+  <div class="fragment" data-fragment-index="0">
+    <p style="font-family:monospace; font-size:0.9em; color:#2e7d32;">316.23</p>
+    <p>316 is <strong>less</strong> than 500.
+    Your guess was <strong>too low</strong>!</p>
+    <p>So the answer is between <span class="fragment fade-out" data-fragment-index="1">&hellip;</span><span class="fragment" data-fragment-index="1"><strong>2.5 and 3</strong>.
+    <strong>Take a better guess!</strong></span></p>
+  </div>
+  <div class="fragment" data-fragment-index="2">
+<pre><code>guess = 2.75
+print(10**guess)</code></pre>
+    <p style="font-family:monospace; font-size:0.9em; color:#2e7d32;">562.34</p>
+    <p>Too high! Answer is between 2.5 and 2.75.</p>
+  </div>
+  <div class="fragment" data-fragment-index="3">
+<pre><code>guess = 2.625
+print(10**guess)</code></pre>
+    <p style="font-family:monospace; font-size:0.9em; color:#2e7d32;">421.70</p>
+    <p>Too <strong>low</strong>! Answer is between 2.625 and 2.75.</p>
+  </div>
+</div>
+
+
+
+
+<div style="font-size:1.4em;">
+  <p>Your next guess will be between which two numbers?</p>
+  <p>Call them <code>lo</code> and <code>hi</code>, then calculate
+  the midpoint:</p>
+<pre><code>lo = 2
+hi = 3
+
+guess = (lo + hi) / 2
+print(f"Guess: {guess}")
+print(f"10**guess: {10**guess}")</code></pre>
+  <div class="fragment" data-fragment-index="0">
+    <p style="font-family:monospace; font-size:0.85em; color:#2e7d32;">
+      Guess: 2.5<br/>
+      10**guess: 316.23
+    </p>
+    <p>Too low! So the answer is between <code>guess</code> and <code>hi</code>.</p>
+    <p><strong>Update <code>lo = guess</code></strong> and compute
+    a new midpoint.</p>
+  </div>
+</div>
+
+
+
+
+<style>
+  .reveal .code-stack { position: relative; }
+  .reveal .code-step  { position: absolute; top: 0; left: 0; right: 0; }
+</style>
+
+<div style="font-size:1.3em;">
+  <p>Can you automatically change <code>lo</code> or <code>hi</code>
+  depending on whether <code>10**guess</code> was higher or lower than 500?</p>
+  <p>This is Python&rsquo;s <code>if</code>-<code>else</code>:</p>
+  <div class="code-stack" style="min-height:13em;">
+    <div class="code-step fragment fade-out" data-fragment-index="0">
+<pre><code>lo = 2
+hi = 3
+value = 500
+
+guess = (lo + hi) / 2
+
+if 10**guess > value:
+    # guess was too high — which bound should change?
+else:
+    # guess was too low — which bound should change?
+
+print(f"New range: [{lo}, {hi}]")</code></pre>
+    </div>
+    <div class="code-step fragment" data-fragment-index="0">
+<pre><code>lo = 2
+hi = 3
+value = 500
+
+guess = (lo + hi) / 2
+
+if 10**guess > value:
+    hi = guess       # too high — bring ceiling down
+else:
+    lo = guess       # too low — raise the floor
+
+print(f"New range: [{lo}, {hi}]")</code></pre>
+    </div>
+  </div>
+  <div class="fragment" data-fragment-index="1">
+    <p style="font-family:monospace; font-size:0.85em; color:#2e7d32;">
+      New range: [2.5, 3]</p>
+  </div>
+</div>
+
+
+
+
+<div style="font-size:1.3em;">
+  <p><strong>Run the logic again and again.</strong>
+  Do you see your guess getting closer?</p>
+  <table style="margin:0.5em auto; font-size:0.85em;">
+    <tr><th style="padding:0.2em 0.5em;">Round</th><th style="padding:0.2em 0.5em;">lo</th><th style="padding:0.2em 0.5em;">hi</th><th style="padding:0.2em 0.5em;">guess</th><th style="padding:0.2em 0.5em;">10<sup>guess</sup></th><th style="padding:0.2em 0.5em;">&nbsp;</th></tr>
+    <tr><td>1</td><td>2</td><td>3</td><td>2.5</td><td>316.23</td><td>&uarr; too low</td></tr>
+    <tr class="fragment" data-fragment-index="0"><td>2</td><td>2.5</td><td>3</td><td>2.75</td><td>562.34</td><td>&darr; too high</td></tr>
+    <tr class="fragment" data-fragment-index="0"><td>3</td><td>2.5</td><td>2.75</td><td>2.625</td><td>421.70</td><td>&uarr; too low</td></tr>
+    <tr class="fragment" data-fragment-index="0"><td>4</td><td>2.625</td><td>2.75</td><td>2.6875</td><td>486.97</td><td>&uarr; too low</td></tr>
+    <tr class="fragment" data-fragment-index="0"><td>5</td><td>2.6875</td><td>2.75</td><td>2.7188</td><td>523.30</td><td>&darr; too high</td></tr>
+  </table>
+  <div class="fragment" data-fragment-index="1">
+    <p>Each guess <strong>cuts the range in half</strong>.
+    After 20 rounds, the range is smaller than 0.000001.</p>
+    <p>But copying this block 20 times is tedious&hellip;</p>
+  </div>
+</div>
+
+
+
+
+<div class="part" data-part-number="4">
+  <h2>Part 4: Let the Loop Do the Work<span class="time-estimate">~10 min</span></h2>
+
+  <p>Copying and pasting the same block over and over is tedious.
+Python&rsquo;s <code>for</code> loop can repeat it for you &mdash;
+as many times as you want.</p>
+
+
+</div>
+
+
+
+<div style="font-size:1.3em;">
+  <p>Run your logic <strong>20 times</strong> using a <code>for</code> loop:</p>
+  <div class="code-stack" style="min-height:13em;">
+    <div class="code-step fragment fade-out" data-fragment-index="0">
+<pre><code>lo = 2
+hi = 3
+value = 500
+
+for i in range(20):
+    guess = (lo + hi) / 2
+    # Use your if-else logic here to update lo or hi
+
+print(f"log({value}) = {guess}")
+print(f"10**guess = {10**guess}")</code></pre>
+    </div>
+    <div class="code-step fragment" data-fragment-index="0">
+<pre><code>lo = 2
+hi = 3
+value = 500
+
+for i in range(20):
+    guess = (lo + hi) / 2
+    if 10**guess > value:
+        hi = guess
+    else:
+        lo = guess
+
+print(f"log({value}) = {guess}")
+print(f"10**guess = {10**guess}")</code></pre>
+    </div>
+  </div>
+  <div class="fragment" data-fragment-index="1">
+    <p style="font-family:monospace; font-size:0.85em; color:#2e7d32;">
+      log(500) = 2.6989700043360187<br/>
+      10**guess = 500.0000000000002
+    </p>
+  </div>
+</div>
+
+
+
+
+<div style="font-size:1.4em;">
+  <p>Did <code>10**guess</code> get close to 500?
+  Let&rsquo;s compare with Python&rsquo;s built-in:</p>
+<pre><code>import math
+print(f"Your answer:     {guess}")
+print(f"math.log10(500): {math.log10(500)}")</code></pre>
+  <div class="fragment" data-fragment-index="0">
+    <p style="font-family:monospace; font-size:0.85em; color:#2e7d32;">
+      Your answer: &nbsp;&nbsp;&nbsp;&nbsp;2.6989700043360187<br/>
+      math.log10(500): 2.6989700043360187
+    </p>
+    <p><strong>They match!</strong>
+    Your simple guessing loop matches the built-in function.</p>
+  </div>
+  <div class="fragment" data-fragment-index="1">
+    <p>Now repeat the process for <strong>log(50)</strong>.</p>
+    <p style="font-size:0.9em;">What should <code>lo</code> and
+    <code>hi</code> start at?</p>
+  </div>
+  <div class="fragment" data-fragment-index="2">
+    <p style="font-size:0.9em;">10<sup>1</sup> = 10 (too small),
+    10<sup>2</sup> = 100 (too big) &rarr;
+    <code>lo = 1, hi = 2</code></p>
+    <p style="font-size:0.9em;">Run the same loop &mdash; it works!</p>
+  </div>
+</div>
+
+
+
+
+<div style="font-size:1.4em;">
+  <p>Every guess <strong>eliminates half</strong> of the remaining range.</p>
+  <table style="margin:0.5em auto; font-size:0.85em;">
+    <tr><td style="padding:0.2em 0.8em;">After 1 guess:</td><td>half the range left</td></tr>
+    <tr><td style="padding:0.2em 0.8em;">After 5 guesses:</td><td>1/32 of the range</td></tr>
+    <tr><td style="padding:0.2em 0.8em;">After 10 guesses:</td><td>1/1024 of the range</td></tr>
+    <tr><td style="padding:0.2em 0.8em;">After 20 guesses:</td><td>1/1,048,576 of the range</td></tr>
+  </table>
+  <div class="fragment" data-fragment-index="0">
+    <p>This &ldquo;halving&rdquo; strategy is called
+    <strong>binary search</strong> &mdash; &ldquo;binary&rdquo; because
+    you split the range in <strong>two</strong> each time.</p>
+    <p style="font-size:0.9em;">It is one of the most important algorithms
+    in computer science &mdash; and you just invented it.</p>
+  </div>
+</div>
+
+
+
+
+<div class="part" data-part-number="5">
+  <h2>Part 5: Build Your Own Log Function<span class="time-estimate">~5 min</span></h2>
+
+  <p>You&rsquo;ve found log(500) and log(50) by repeating the same code
+with different numbers. Copying code is messy &mdash; a <strong>function</strong>
+packages it so you can call it with any input.</p>
+
+
+</div>
+
+
+
+<div style="font-size:1.3em;">
+  <p>Consolidate your for-loop and if-else into one function.
+  <strong>Fill in the two missing lines:</strong></p>
+  <div class="code-stack" style="min-height:13em;">
+    <div class="code-step fragment fade-out" data-fragment-index="0">
+<pre><code>def my_log(value, base, lo, hi, iterations):
+    for i in range(iterations):
+        guess = (lo + hi) / 2
+        if base**guess > value:
+            pass   # Your code goes here
+        else:
+            pass   # Your code goes here
+    return guess</code></pre>
+    </div>
+    <div class="code-step fragment" data-fragment-index="0">
+<pre><code>def my_log(value, base, lo, hi, iterations):
+    for i in range(iterations):
+        guess = (lo + hi) / 2
+        if base**guess > value:
+            hi = guess
+        else:
+            lo = guess
+    return guess</code></pre>
+    </div>
+  </div>
+  <div class="fragment" data-fragment-index="1">
+    <p>When <code>base**guess > value</code> (too high),
+    bring the ceiling down: <code>hi = guess</code>.</p>
+    <p>When too low, raise the floor: <code>lo = guess</code>.</p>
+    <p style="font-size:0.9em;">Same logic you&rsquo;ve been doing all along
+    &mdash; now packaged as a reusable function.</p>
+  </div>
+</div>
+
+
+
+
+<div style="font-size:1.4em;">
+  <p><strong>Test it:</strong></p>
+<pre><code>import math
+
+result = my_log(500, 10, 2, 3, 20)
+print(f"my_log:      {result}")
+print(f"math.log10:  {math.log10(500)}")</code></pre>
+  <div class="fragment" data-fragment-index="0">
+    <p style="font-family:monospace; font-size:0.85em; color:#2e7d32;">
+      my_log: &nbsp;&nbsp;&nbsp;&nbsp; 2.6989700043360187<br/>
+      math.log10: &nbsp;2.6989700043360187
+    </p>
+    <p><strong>They match!</strong></p>
+  </div>
+  <div class="fragment" data-fragment-index="1">
+    <p style="font-size:0.9em;">Try more:</p>
+<pre><code>print(my_log(1000, 10, 2, 4, 20))  # 3.0
+print(my_log(8, 2, 2, 4, 20))      # 3.0
+print(my_log(6, 2, 2, 3, 20))      # 2.5849625...
+print(my_log(27, 3, 2, 4, 20))     # 3.0</code></pre>
+  </div>
+  <div class="fragment" data-fragment-index="2">
+    <p style="font-size:0.9em;">Your function works for <strong>any base</strong>
+    &mdash; because the condition <code>base**guess > value</code>
+    works no matter what the base is!</p>
+  </div>
+</div>
+
+
+
+
+<div style="font-size:1.3em;">
+  <p>Use your function to explore a pattern:</p>
+  <table style="margin:0.5em auto; font-size:0.9em;">
+    <tr><th style="padding:0.3em 1em;">Number</th><th style="padding:0.3em 1em;">log<sub>10</sub></th></tr>
+    <tr><td>5</td><td>0.699</td></tr>
+    <tr><td>50</td><td>1.699</td></tr>
+    <tr><td>500</td><td>2.699</td></tr>
+    <tr class="fragment" data-fragment-index="0"><td>5000</td><td><span class="fragment fade-out" data-fragment-index="1">?</span><span class="fragment" data-fragment-index="1">3.699</span></td></tr>
+  </table>
+  <div class="fragment" data-fragment-index="1">
+    <p>Every time you <strong>multiply the number by 10</strong>,
+    the log goes up by <strong>exactly 1</strong>.
+    That makes sense &mdash; you&rsquo;re adding one more power of 10!</p>
+  </div>
+  <div class="fragment" data-fragment-index="2">
+    <p><strong>Congratulations!</strong> In one sitting you learned:</p>
+    <table style="margin:0.3em auto; font-size:0.8em; text-align:left;">
+      <tr><th style="padding:0.2em 0.6em;">What you did</th><th style="padding:0.2em 0.6em;">Python concept</th></tr>
+      <tr><td>Counted zeros (10, 100, 1000)</td><td><strong>Expressions</strong></td></tr>
+      <tr><td>Guessed log(500), checked with <code>10**x</code></td><td><strong>Variables</strong></td></tr>
+      <tr><td>Tracked the range with lo and hi</td><td><strong>Variables</strong> (lo, hi)</td></tr>
+      <tr><td>Automated the high/low decision</td><td><strong>if / else</strong></td></tr>
+      <tr><td>Repeated the guessing 20 times</td><td><strong>for loop</strong></td></tr>
+      <tr><td>Packaged it as <code>my_log</code></td><td><strong>Functions</strong> (def)</td></tr>
+    </table>
+  </div>
+</div>
+
+
+
+
+<div class="part" data-part-number="6">
+  <h2>Part 6: Beyond Base 10<span class="time-estimate">~10 min</span></h2>
 
   <p>Up to now, every &ldquo;log&rdquo; you computed was secretly <strong>log base 10</strong> &mdash;
 counting zeros only works because our number system is built on powers of 10.
@@ -338,103 +642,23 @@ because the base is about to change.</p>
   <div class="fragment" data-fragment-index="0">
     <p>You know log<sub>2</sub>(4) = 2 and log<sub>2</sub>(8) = 3.
     Since 6 is between 4 and 8, the answer must be <strong>between 2 and 3</strong>.</p>
-    <p>Let&rsquo;s narrow it down with <strong>hit-and-trial</strong>:</p>
+    <p>You already have a function for this!</p>
   </div>
   <div class="fragment" data-fragment-index="1">
-    <table style="margin:0.5em auto; font-size:0.85em;">
-      <tr><th style="padding:0.2em 0.6em;">Try x =</th><th style="padding:0.2em 0.6em;">2<sup>x</sup></th><th style="padding:0.2em 0.6em;">Verdict</th></tr>
-      <tr><td>2.5</td><td>5.66</td><td>too small &mdash; need a bit higher</td></tr>
-      <tr class="fragment" data-fragment-index="2"><td>2.6</td><td>6.06</td><td>tiny bit too big &mdash; between 2.5 and 2.6</td></tr>
-      <tr class="fragment" data-fragment-index="3"><td>2.58</td><td>5.98</td><td>very close, just under</td></tr>
-      <tr class="fragment" data-fragment-index="4"><td>2.585</td><td>5.999</td><td style="color:#2a7a2a;">almost exact!</td></tr>
-    </table>
+<pre><code>print(my_log(6, 2, 2, 3, 20))</code></pre>
+    <p style="font-family:monospace; font-size:0.9em; color:#2e7d32;">2.584962500721156</p>
+    <p style="color:#2a7a2a;">log<sub>2</sub>(6) &asymp; <strong>2.585</strong>.</p>
   </div>
-  <div class="fragment" data-fragment-index="5">
-    <p style="color:#2a7a2a;">That&rsquo;s right! log<sub>2</sub>(6) &asymp; <strong>2.585</strong>.</p>
+  <div class="fragment" data-fragment-index="2">
+    <p style="font-size:0.85em;">Verify: <code>math.log(6, 2)</code> &rarr; <strong>2.585</strong>. Your binary search nails it!</p>
   </div>
 </div>
 
 
 
 
-<div class="part" data-part-number="4">
-  <h2>Part 4: Build Your Own Log Function<span class="time-estimate">~10 min</span></h2>
-
-</div>
-
-
-
-<style>
-  .reveal .code-stack { position: relative; }
-  .reveal .code-step  { position: absolute; top: 0; left: 0; right: 0; }
-</style>
-
-<div style="font-size:1.3em;">
-  <p style="font-size:0.85em;">Verify: <code>math.log(6, 2)</code> &rarr; <strong>2.585</strong>. Logarithms don&rsquo;t have to be whole numbers!</p>
-  <p>You&rsquo;ve been doing hit-and-trial by hand. Let&rsquo;s make Python do it!</p>
-  <p><strong>Write a function <code>my_log(value, base)</code></strong> that tries
-  <code>x</code> from 0 to 20 in tiny steps (0.001) and returns the
-  <code>x</code> where <code>base**x</code> is closest to <code>value</code>.</p>
-  <p>Fill in the missing part:</p>
-  <div class="code-stack" style="min-height:14em;">
-    <div class="code-step fragment fade-out" data-fragment-index="0">
-<pre><code>def my_log(value, base):
-    best_x = 0
-    best_diff = abs(value - 1)   # base**0 = 1
-    x = 0
-    while x &lt;= 20:
-        diff = abs(base**x - value)
-        if diff &lt; best_diff:
-            # what should you update here?
-            pass
-        x += 0.001
-    return round(best_x, 3)</code></pre>
-    </div>
-    <div class="code-step fragment" data-fragment-index="0">
-<pre><code>def my_log(value, base):
-    best_x = 0
-    best_diff = abs(value - 1)
-    x = 0
-    while x &lt;= 20:
-        diff = abs(base**x - value)
-        if diff &lt; best_diff:
-            best_diff = diff
-            best_x = x
-        x += 0.001
-    return round(best_x, 3)</code></pre>
-    </div>
-  </div>
-  <div class="fragment" data-fragment-index="1">
-    <p style="color:#2a7a2a;">That&rsquo;s right! When we find a closer match, we save both the new <code>best_diff</code> and the <code>best_x</code> that produced it.</p>
-  </div>
-</div>
-
-
-
-
-<div style="font-size:1.5em;">
-  <p><strong>Test your function</strong> against Python&rsquo;s built-in <code>math.log</code>:</p>
-  <table style="margin:0.5em auto; font-size:0.85em;">
-    <tr><th style="padding:0.2em 0.6em;">Call</th><th style="padding:0.2em 0.6em;">my_log</th><th style="padding:0.2em 0.6em;">math.log</th><th style="padding:0.2em 0.6em;"></th></tr>
-    <tr><td><code>my_log(1000, 10)</code></td><td>3.0</td><td>3.0</td><td>&#10003;</td></tr>
-    <tr><td><code>my_log(500, 10)</code></td><td>2.699</td><td>2.699</td><td>&#10003;</td></tr>
-    <tr><td><code>my_log(8, 2)</code></td><td>3.0</td><td>3.0</td><td>&#10003;</td></tr>
-    <tr><td><code>my_log(6, 2)</code></td><td>2.585</td><td>2.585</td><td>&#10003;</td></tr>
-    <tr><td><code>my_log(27, 3)</code></td><td>3.0</td><td>3.0</td><td>&#10003;</td></tr>
-  </table>
-  <div class="fragment" data-fragment-index="0">
-    <p>It works! But it&rsquo;s slow &mdash; it checks 20,000 values to find one answer.</p>
-    <p>The <strong>Binary Search</strong> chapter on this site finds the answer in
-    just ~40 steps instead of 20,000. Same idea as your
-    square-root guessing game &mdash; halve the range each time!</p>
-  </div>
-</div>
-
-
-
-
-<div class="part" data-part-number="5">
-  <h2>Part 5: The Change of Base Formula<span class="time-estimate">~5 min</span></h2>
+<div class="part" data-part-number="7">
+  <h2>Part 7: The Change of Base Formula<span class="time-estimate">~5 min</span></h2>
 
 </div>
 
@@ -504,8 +728,8 @@ def log_base(value, base):
     <tr><th style="padding:0.3em 1em;">You did</th><th style="padding:0.3em 1em;">Real name</th></tr>
     <tr><td>Counted zeros in 10, 100, 1000&hellip;</td><td>log<sub>10</sub></td></tr>
     <tr><td>&ldquo;base to the power of what?&rdquo;</td><td>Logarithm definition</td></tr>
-    <tr><td>Hit-and-trial guessing</td><td>Numerical root finding</td></tr>
-    <tr><td><code>my_log(value, base)</code></td><td>Brute-force log calculator</td></tr>
+    <tr><td>Guessing and narrowing down</td><td>Binary search</td></tr>
+    <tr><td><code>my_log(value, base, lo, hi, iters)</code></td><td>Binary-search log calculator</td></tr>
     <tr><td>Dividing two log<sub>10</sub> values</td><td>Change of base formula</td></tr>
   </table>
   <div class="fragment" data-fragment-index="0">
@@ -518,18 +742,15 @@ def log_base(value, base):
 
 <div class="chapter-footer">
 
-  <p><em><p>You started by counting zeros. You ended with a working
-<code>my_log(value, base)</code> function and the change-of-base
-formula. Every time you see &ldquo;log&rdquo;, just ask:
+  <p><em><p>You started by counting zeros. You ended with a function that
+computes logarithms to arbitrary precision using binary search.
+Every time you see &ldquo;log&rdquo;, just ask:
 &ldquo;base to the power of <em>what</em> gives this number?&rdquo;
 That&rsquo;s all there is to it.</p>
 
 <p><strong>Going further:</strong></p>
 
 <ul>
-<li><strong>Binary search:</strong> Your brute-force <code>my_log</code> tries
-thousands of values. Binary search finds the answer in ~40 steps
-&mdash; see the Binary Search chapter on this site.</li>
 <li><strong>Natural log (ln):</strong> Base <em>e</em> &asymp; 2.718 appears
 everywhere in calculus and probability. Same idea, special base.</li>
 <li><strong>Information theory:</strong> log<sub>2</sub> measures how many
@@ -565,6 +786,11 @@ that&rsquo;s the basis of bits and entropy.</li>
     <div class="glossary-entry" data-term="exponent / power">
       <dt>Exponent / Power</dt>
       <dd>How many times the base is multiplied by itself: 10³ means 10 × 10 × 10.</dd>
+    </div>
+
+    <div class="glossary-entry" data-term="binary search">
+      <dt>Binary Search</dt>
+      <dd>Finding an answer by repeatedly halving the search range — guess the middle, eliminate the wrong half, repeat.</dd>
     </div>
 
     <div class="glossary-entry" data-term="change of base">
