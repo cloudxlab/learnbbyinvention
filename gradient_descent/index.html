@@ -40,10 +40,7 @@
 
 <h1>Gradient Descent &amp; Linear Regression</h1>
 
-<p class="chapter-intro">You have a function with a valley. You want to find the bottom.
-You'll invent a method to do it automatically, then discover that
-the same method can fit a line to data &mdash; and that's
-linear regression.</p>
+<p class="chapter-intro">Don&rsquo;t just watch &mdash; <strong>invent</strong>.</p>
 
 
 <div class="global-controls">
@@ -55,38 +52,114 @@ linear regression.</p>
 
 
 <div class="part" data-part-number="1">
-  <h2>Part 1: Finding the Bottom of a Valley<span class="time-estimate">~5 min</span></h2>
+  <h2>Part 1: Finding the Bottom of a Valley<span class="time-estimate">~15 min</span></h2>
 
 </div>
 
 
 
+<div style="font-size:1.5em;">
+  <p><strong>What you&rsquo;ll invent today:</strong></p>
+  <ul style="line-height:1.8;">
+    <li>The most important algorithm in machine learning</li>
+    <li>The one that trains <em>every</em> neural network</li>
+    <li>The one that powers GPT, image classifiers, and AlphaFold</li>
+  </ul>
+  <p class="fragment" data-fragment-index="0" style="font-size:1.1em;">
+    And you&rsquo;ll build it <strong>from scratch</strong>.</p>
+</div>
+
+
+
+
+<div style="font-size:1.5em;">
+  <p><strong>How this works:</strong></p>
+  <ul style="line-height:1.8;">
+    <li>Open a <strong>Python notebook</strong> side by side</li>
+    <li>Code along &mdash; don&rsquo;t just read</li>
+    <li>Try before you peek at the answer</li>
+  </ul>
+</div>
+
+
+
+
 <div style="font-size:1.4em;">
+  <p>Consider this function:</p>
+  <p style="font-size:1.2em; text-align:center;">$f(x) = x^4 - 4x + 10$</p>
+  <p>Go to <a href="https://www.desmos.com/calculator" target="_blank">desmos.com/calculator</a>
+  and plot it. Type <code>x^4 - 4x + 10</code> in the expression box.</p>
+  <div class="fragment" data-fragment-index="0">
+    <p style="text-align:center;">
+      <img src="desmos_f.png" alt="Desmos plot of f(x) = x⁴ − 4x + 10"
+           style="max-height:220px; border:1px solid #ccc; border-radius:6px;" />
+    </p>
+  </div>
+</div>
+
+
+
+
+<div style="font-size:1.4em;">
+  <p>Notice the shape &mdash; it looks like a <strong>bowl</strong>.</p>
   <div style="display:flex; align-items:flex-start; gap:1.5em; justify-content:center;">
     <div style="flex:1;">
-      <p>Consider this function:</p>
-      <p style="font-size:1.1em;">$f(x) = x^4 - 4x + 10$</p>
-      <p><strong>Where is its minimum?</strong></p>
+      <p style="font-size:0.95em;">A function is <strong>convex</strong> if it curves upward everywhere.</p>
+      <p style="font-size:0.95em;">Visually: draw a straight line between
+      any two points on the curve &mdash;
+      the curve always stays <em>below</em> that line.</p>
     </div>
-    <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" style="max-width:240px; flex-shrink:0;">
-      <line x1="45" y1="165" x2="265" y2="165" stroke="#999" stroke-width="1"/>
-      <line x1="45" y1="165" x2="45" y2="15" stroke="#999" stroke-width="1"/>
-      <text x="73" y="178" font-size="9" fill="#666" text-anchor="middle">-1</text>
-      <text x="128" y="178" font-size="9" fill="#666" text-anchor="middle">0</text>
-      <text x="183" y="178" font-size="9" fill="#666" text-anchor="middle">1</text>
-      <text x="238" y="178" font-size="9" fill="#666" text-anchor="middle">2</text>
-      <text x="37" y="143" font-size="9" fill="#666" text-anchor="end">10</text>
-      <text x="37" y="93" font-size="9" fill="#666" text-anchor="end">20</text>
-      <text x="37" y="43" font-size="9" fill="#666" text-anchor="end">30</text>
-      <text x="155" y="13" font-size="9" fill="#1565c0" text-anchor="middle">f(x)</text>
-      <text x="268" y="178" font-size="9" fill="#666">x</text>
-      <polyline points="45,85 73,115 100,130 128,140 155,150 169,153 183,155 196,153 210,145 238,100 254,45" fill="none" stroke="#1565c0" stroke-width="2.5"/>
+    <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="max-width:260px; flex-shrink:0;">
+      <defs>
+        <marker id="gap-arrow" markerWidth="6" markerHeight="4" refX="3" refY="2" orient="auto">
+          <polygon points="0 0, 6 2, 0 4" fill="#888"/>
+        </marker>
+      </defs>
+      <line x1="20" y1="180" x2="260" y2="180" stroke="#ccc" stroke-width="0.5"/>
+      <line x1="110" y1="20" x2="110" y2="180" stroke="#ccc" stroke-width="0.5"/>
+      <text x="50" y="195" font-size="9" fill="#999" text-anchor="middle">-1</text>
+      <text x="110" y="195" font-size="9" fill="#999" text-anchor="middle">0</text>
+      <text x="170" y="195" font-size="9" fill="#999" text-anchor="middle">1</text>
+      <text x="230" y="195" font-size="9" fill="#999" text-anchor="middle">2</text>
+      <polyline points="20,52 35,80 50,100 65,114 80,124 95,132 110,140 125,148 140,156 155,162 170,164 185,161 200,148 215,121 230,76 242,23" fill="none" stroke="#1565c0" stroke-width="2.5"/>
+      <line x1="50" y1="100" x2="230" y2="76" stroke="#c62828" stroke-width="2" stroke-dasharray="6,3"/>
+      <circle cx="50" cy="100" r="4" fill="#c62828"/>
+      <circle cx="230" cy="76" r="4" fill="#c62828"/>
+      <text x="40" y="96" font-size="10" fill="#c62828" text-anchor="end" font-weight="bold">A</text>
+      <text x="240" y="73" font-size="10" fill="#c62828" font-weight="bold">B</text>
+      <line x1="140" y1="88" x2="140" y2="154" stroke="#888" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="155" y="125" font-size="9" fill="#666">curve below</text>
     </svg>
   </div>
   <div class="fragment" data-fragment-index="0">
-    <p>Looks like <strong>x &asymp; 1</strong>. But how precise can you be just by looking?</p>
-    <p>Try narrowing it down: pick a value, evaluate $f(x)$, adjust.
-    What strategy do you use?</p>
+    <p><strong>Is $f(x) = x^4 - 4x + 10$ convex?</strong></p>
+  </div>
+  <div class="fragment" data-fragment-index="1">
+    <p>Yes! It has a single valley &mdash; no bumps, no extra dips.
+    A convex function has exactly <strong>one minimum</strong>.</p>
+  </div>
+</div>
+
+
+
+
+<style>
+  .reveal .code-stack { position: relative; }
+  .reveal .code-step  { position: absolute; top: 0; left: 0; right: 0; }
+</style>
+
+<div style="font-size:1.4em;">
+  <p>Let&rsquo;s work with this in Python. Write a function that computes
+  $f(x) = x^4 - 4x + 10$:</p>
+  <div class="code-stack" style="min-height:4.5em;">
+    <div class="code-step fragment fade-out" data-fragment-index="0">
+<pre><code>def f(x):
+    # your code here</code></pre>
+    </div>
+    <div class="code-step fragment" data-fragment-index="0">
+<pre><code>def f(x):
+    return x**4 - 4*x + 10</code></pre>
+    </div>
   </div>
 </div>
 
@@ -94,20 +167,79 @@ linear regression.</p>
 
 
 <div style="font-size:1.4em;">
-  <p>Here is a hit-and-trial sequence:</p>
-  <table style="margin:0.5em auto; font-size:0.9em;">
-    <tr><th style="padding:0.2em 0.8em;">Guess</th><th style="padding:0.2em 0.8em;">x</th><th style="padding:0.2em 0.8em;">f(x)</th><th style="padding:0.2em 0.8em;">Action</th></tr>
-    <tr><td>1</td><td>1.5</td><td>9.06</td><td>&larr; try left</td></tr>
-    <tr><td>2</td><td>1.0</td><td>7.00</td><td>&larr; keep going</td></tr>
-    <tr><td>3</td><td>0.8</td><td>7.21</td><td>&rarr; overshot!</td></tr>
-    <tr><td>4</td><td>0.9</td><td>7.06</td><td>&rarr; a bit more</td></tr>
-    <tr><td>5</td><td>1.0</td><td>7.00</td><td>&check; best so far</td></tr>
-  </table>
+  <p>Call your function: what are <code>f(-5)</code> and <code>f(5)</code>?</p>
   <div class="fragment" data-fragment-index="0">
-    <p>Notice your strategy: you looked at whether the function was
-    <strong>going up or going down</strong> &mdash; and walked the other way.</p>
-    <p>That &ldquo;going up or going down&rdquo; has a name: the <strong>slope</strong>.</p>
-    <p>Can we teach a machine this strategy?</p>
+    <table style="margin:0.5em auto; font-size:0.95em;">
+      <tr><th style="padding:0.2em 0.8em;">x</th><th style="padding:0.2em 0.8em;">f(x)</th></tr>
+      <tr><td>&minus;5</td><td>655</td></tr>
+      <tr><td>5</td><td>615</td></tr>
+    </table>
+    <p>Both are large. The minimum is somewhere <strong>in between</strong>.</p>
+    <p>Can you find it?</p>
+  </div>
+</div>
+
+
+
+
+<div style="font-size:1.4em;">
+  <p><strong>Find the minimum by hit and trial.</strong></p>
+  <p style="font-size:0.95em;">Call <code>f(x)</code> for different values
+  in your notebook. Keep narrowing down.</p>
+  <div class="fragment" data-fragment-index="0">
+    <table style="margin:0.5em auto; font-size:0.85em;">
+      <tr><th style="padding:0.2em 0.6em;">x</th><th style="padding:0.2em 0.6em;">f(x)</th><th style="padding:0.2em 0.6em;">Observation</th></tr>
+      <tr><td>0</td><td>10.0</td><td></td></tr>
+      <tr><td>2</td><td>18.0</td><td>too far right</td></tr>
+      <tr><td>1</td><td>7.0</td><td>&darr; lower!</td></tr>
+      <tr><td>0.5</td><td>8.06</td><td>worse &mdash; go back</td></tr>
+      <tr><td>1.0</td><td>7.0</td><td>&check; best so far</td></tr>
+    </table>
+    <p>The minimum seems to be near <strong>x &asymp; 1</strong>, where f(x) = 7.</p>
+  </div>
+</div>
+
+
+
+
+<div style="font-size:1.4em;">
+  <p>Now try another convex function:</p>
+  <p style="font-size:1.1em; text-align:center;">$g(x) = x^2 - 2x + 5$</p>
+  <p>Find its minimum using hit and trial in Python.</p>
+  <div class="fragment" data-fragment-index="0">
+    <p>The minimum is at <strong>x = 1</strong>, where g(1) = 4.</p>
+    <p><strong>What strategy did you use?</strong> Describe it in words.</p>
+  </div>
+  <div class="fragment" data-fragment-index="1">
+    <p style="font-size:0.9em; padding:0.3em 0.8em; border-left:3px solid #1565c0;">
+      &ldquo;Check a nearby value on each side.
+      Move toward whichever side is lower.
+      Keep going until neither side is lower.&rdquo;</p>
+  </div>
+</div>
+
+
+
+
+<div style="font-size:1.4em;">
+  <p>Convert your strategy into code:</p>
+<pre><code>def find_minimum(x):
+    """
+    Starting from x, find the value
+    that minimizes f.
+    """
+    # your code here</code></pre>
+  <div class="fragment" data-fragment-index="0">
+    <p style="font-size:0.95em;">Test it:</p>
+<pre><code>print(find_minimum(5.0))
+# should print something close to 1.0</code></pre>
+  </div>
+  <div class="fragment" data-fragment-index="1">
+    <p>Your strategy works! But it&rsquo;s <strong>slow</strong> &mdash; lots of tiny steps.</p>
+    <p>What if, instead of just checking left vs. right,
+    you could know exactly <em>how steep</em> the function is
+    and <em>which direction</em> is downhill?</p>
+    <p>That&rsquo;s the <strong>slope</strong>.</p>
   </div>
 </div>
 
