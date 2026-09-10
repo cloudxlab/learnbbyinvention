@@ -244,27 +244,6 @@
         </section>
 
 
-
-        <section>
-          <h3>Explore the Formula</h3>
-          <div class="slide-content">
-
-
-          <p><strong>Tasks:</strong></p>
-
-<ol>
-<li>Fix <code>principal = 1000</code> and <code>rate = 5</code>. Compute the interest for <code>time = 1, 2, 3, ..., 10</code>. What pattern do you notice in how the interest grows as <code>time</code> increases by 1 each time?</li>
-<li>Now fix <code>principal = 1000</code> and <code>time = 1</code>. Compute the interest for <code>rate = 1, 2, ..., 10</code>. Is the pattern the same kind of growth as in #1?</li>
-<li>In one sentence, describe what you'd call this kind of growth (hint: it's the same shape as the line <code>y = m*x + c</code> you may already know).</li>
-</ol>
-
-
-
-
-          </div>
-        </section>
-
-
       </section>
 
 
@@ -449,24 +428,6 @@
 <span class="n">manhattan_distance</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Output: 4</span>
 </code></pre>
 </div>
-
-
-          </div>
-        </section>
-
-
-
-        <section>
-          <h3>Compare the Two Distances</h3>
-          <div class="slide-content">
-
-          <p><strong>Tasks:</strong></p>
-
-<ol>
-<li>For the points <code>(0, 0)</code> and <code>(3, 4)</code>, compute both <code>find_distance_2d</code> and <code>manhattan_distance</code>. Which is bigger?</li>
-<li>Will the Manhattan distance ever be <em>smaller</em> than the Euclidean distance, for the same two points? Reason about it, or try a few pairs of points to support your answer.</li>
-<li>Find a pair of points for which the two distances come out <em>equal</em>. What do those points have in common?</li>
-</ol>
 
 
           </div>
@@ -733,24 +694,6 @@ in class. For now, just run it and use it.</p>
 
 
         <section>
-          <h3>Test on More Functions</h3>
-          <div class="slide-content">
-
-          <p><strong>Tasks:</strong></p>
-
-<ol>
-<li>Try <code>approx_derivative</code> on <code>cube(x) = x*x*x</code> at <code>x=2</code>. The true derivative of <code>x**3</code> is <code>3*x**2</code> — at <code>x=2</code> that's <code>12</code>. How close are you?</li>
-<li>Try it on <code>math.sin</code> at <code>x=0</code>. The true derivative of <code>sin(x)</code> at <code>0</code> is <code>cos(0) = 1</code>.</li>
-<li>What happens to the accuracy of your approximation as <code>h</code> gets smaller — try <code>h = 0.1, 0.01, 0.0001, 0.0000001</code>? What about when <code>h</code> gets <em>too</em> small (like <code>1e-15</code>)? Can you explain what you observe?</li>
-</ol>
-
-
-          </div>
-        </section>
-
-
-
-        <section>
           <h3>The Tangent Line's Intercept</h3>
           <div class="slide-content">
 
@@ -836,42 +779,6 @@ in class. For now, just run it and use it.</p>
 
 
         <section>
-          <h3>Extract All Digits</h3>
-          <div class="slide-content">
-
-          <p>Using <code>last_digit</code> and <code>remove_last_digit</code> from Part 1 (plus a loop), write <code>all_digits(n)</code> that returns a list of <code>n</code>'s digits, in order.</p>
-
-<div class="codehilite">
-<pre><span></span><code><span class="n">all_digits</span><span class="p">(</span><span class="mi">2784</span><span class="p">)</span>  <span class="c1"># Output: [2, 7, 8, 4]</span>
-</code></pre>
-</div>
-
-
-          </div>
-        </section>
-
-
-
-        <section>
-          <h3>Distance in N Dimensions</h3>
-          <div class="slide-content">
-
-          <p><code>find_distance_2d</code> and <code>calculate_distance_3d</code> look almost identical except for how many coordinates they take. Generalize: write <code>distance_nd(point1, point2)</code> where <code>point1</code> and <code>point2</code> are <em>lists</em> of any length (same length as each other), and return the Euclidean distance between them.</p>
-
-<div class="codehilite">
-<pre><span></span><code><span class="n">distance_nd</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>               <span class="c1"># Output: 5.0</span>
-<span class="n">distance_nd</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>         <span class="c1"># Output: 1.7320508075688772</span>
-<span class="n">distance_nd</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>  <span class="c1"># 4D!</span>
-</code></pre>
-</div>
-
-
-          </div>
-        </section>
-
-
-
-        <section>
           <h3>A More Accurate Derivative</h3>
           <div class="slide-content">
 
@@ -879,7 +786,7 @@ in class. For now, just run it and use it.</p>
 
 <p>$$f'(x) \approx \frac{f(x + h) - f(x - h)}{2h}$$</p>
 
-<p>Write <code>central_derivative(func, x, h)</code> and compare its accuracy against <code>approx_derivative</code> for <code>cube</code> at <code>x=2</code> (true answer: <code>12</code>), using the same values of <code>h</code> you tried in Exercise 5.3. Which method gets closer, faster, as <code>h</code> shrinks?</p>
+<p>Write <code>central_derivative(func, x, h)</code> and compare its accuracy against <code>approx_derivative</code> for <code>cube</code> at <code>x=2</code> (true answer: <code>12</code>), using several values of <code>h</code> (e.g. <code>0.1, 0.01, 0.0001, 0.0000001</code>). Which method gets closer, faster, as <code>h</code> shrinks?</p>
 
 
           </div>
@@ -894,34 +801,6 @@ in class. For now, just run it and use it.</p>
           <p>The second derivative tells you how the <em>slope itself</em> is changing. You already have a function that computes a derivative — what happens if you feed <code>approx_derivative</code> a function that is <em>itself</em> a derivative?</p>
 
 <p>Write <code>second_derivative(func, x, h)</code> that approximates $f''(x)$ by applying <code>approx_derivative</code> twice. Test it on <code>cube(x) = x**3</code>, whose second derivative is <code>6*x</code> — at <code>x=2</code> that's <code>12</code>.</p>
-
-
-          </div>
-        </section>
-
-
-
-        <section>
-          <h3>Your Own `map`</h3>
-          <div class="slide-content">
-
-          <p>You've been writing the same loop again and again: <em>go over a list, do something to each element, collect the results</em>. Capture the pattern once and for all.</p>
-
-<p>Write <code>mymapper(func, lst)</code> that returns a new list containing <code>func(x)</code> for each <code>x</code> in <code>lst</code>. Notice what you're doing: <strong>passing a function as an argument</strong>, just like you did with <code>approx_derivative</code>.</p>
-
-
-          </div>
-        </section>
-
-
-
-        <section>
-          <h3>Your Own `reduce`</h3>
-          <div class="slide-content">
-
-          <p>The other loop you keep writing: <em>combine all the elements into one value</em> (a sum, a product, a maximum...).</p>
-
-<p>Write <code>myreducer(func, lst)</code> where <code>func</code> takes two arguments. Start with the first element, then repeatedly combine the running result with the next element: <code>myreducer(add, [1, 2, 3, 4])</code> computes <code>add(add(add(1, 2), 3), 4)</code>.</p>
 
 
           </div>

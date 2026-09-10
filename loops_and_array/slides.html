@@ -1237,6 +1237,134 @@ print(flatten_list(nested))     # [1, 2, 3, 4, 5]
         </section>
 
 
+      </section>
+
+
+
+      <!-- Part 9: Bonus — Loop Explorations -->
+      <section>
+        <section>
+          <h2>Part 9: Bonus — Loop Explorations</h2>
+
+          <div class="slide-content"><p>These exercises practice using loops to explore function behavior, extract data, and capture common patterns.</p>
+</div>
+
+        </section>
+
+
+
+        <section>
+          <h3>Extract All Digits</h3>
+          <div class="slide-content">
+
+          <p>Given two tiny helper functions that pull apart a number one digit at a time:</p>
+
+<ul>
+<li><code>last_digit(n)</code> returns the rightmost digit</li>
+<li><code>remove_last_digit(n)</code> chops off that digit</li>
+</ul>
+
+<p>Using these (plus a loop), write <code>all_digits(n)</code> that returns a list of <code>n</code>'s digits, in order.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">all_digits</span><span class="p">(</span><span class="mi">2784</span><span class="p">)</span>  <span class="c1"># Output: [2, 7, 8, 4]</span>
+<span class="n">all_digits</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="c1"># Output: [0]</span>
+</code></pre>
+</div>
+
+
+          </div>
+        </section>
+
+
+
+        <section>
+          <h3>Explore a Formula with a Loop</h3>
+          <div class="slide-content">
+
+          <p>Simple interest is <code>(principal * rate * time) / 100</code>. A helper is provided below.</p>
+
+<p><strong>Tasks:</strong></p>
+
+<ol>
+<li>Fix <code>principal = 1000</code> and <code>rate = 5</code>. Use a <code>for</code> loop to compute the interest for <code>time = 1, 2, 3, ..., 10</code>. What pattern do you notice in how the interest grows as <code>time</code> increases by 1 each time?</li>
+<li>Now fix <code>principal = 1000</code> and <code>time = 1</code>. Compute the interest for <code>rate = 1, 2, ..., 10</code>. Is the pattern the same kind of growth as in #1?</li>
+<li>In one sentence, describe what you'd call this kind of growth (hint: it's the same shape as the line <code>y = m*x + c</code>).</li>
+</ol>
+
+
+          </div>
+        </section>
+
+
+
+        <section>
+          <h3>Compare Euclidean and Manhattan Distance</h3>
+          <div class="slide-content">
+
+          <p>You wrote <code>euclidean_distance</code> and <code>manhattan_distance</code> in Part 3. Now use a loop to compare them across several point pairs.</p>
+
+<p><strong>Tasks:</strong></p>
+
+<ol>
+<li>For the points <code>[0, 0]</code> and <code>[3, 4]</code>, compute both distances. Which is bigger?</li>
+<li>Will the Manhattan distance ever be <em>smaller</em> than the Euclidean distance? Try a few pairs of points to support your answer.</li>
+<li>Find a pair of points for which the two distances come out <em>equal</em>. What do those points have in common?</li>
+</ol>
+
+
+          </div>
+        </section>
+
+
+
+        <section>
+          <h3>Test a Derivative Approximation</h3>
+          <div class="slide-content">
+
+          <p>A forward-difference derivative approximation is provided below.</p>
+
+<p><strong>Tasks:</strong></p>
+
+<ol>
+<li>Try <code>approx_derivative</code> on <code>cube(x) = x*x*x</code> at <code>x=2</code>. The true derivative of $x^3$ is $3x^2$ — at <code>x=2</code> that's <code>12</code>. How close are you?</li>
+<li>Try it on <code>math.sin</code> at <code>x=0</code>. The true derivative of <code>sin(x)</code> at <code>0</code> is <code>cos(0) = 1</code>.</li>
+<li>What happens to the accuracy as <code>h</code> gets smaller — try <code>h = 0.1, 0.01, 0.0001, 0.0000001</code>? What about when <code>h</code> gets <em>too</em> small (like <code>1e-15</code>)? Can you explain what you observe?</li>
+</ol>
+
+
+          </div>
+        </section>
+
+
+
+        <section>
+          <h3>Your Own `map`</h3>
+          <div class="slide-content">
+
+          <p>You've been writing the same loop again and again: <em>go over a list, do something to each element, collect the results</em>. Capture the pattern once and for all.</p>
+
+<p>Write <code>mymapper(func, lst)</code> that returns a new list containing <code>func(x)</code> for each <code>x</code> in <code>lst</code>. Notice what you're doing: <strong>passing a function as an argument</strong>.</p>
+
+
+          </div>
+        </section>
+
+
+
+        <section>
+          <h3>Your Own `reduce`</h3>
+          <div class="slide-content">
+
+          <p>The other loop you keep writing: <em>combine all the elements into one value</em> (a sum, a product, a maximum...).</p>
+
+<p>Write <code>myreducer(func, lst)</code> where <code>func</code> takes two arguments. Start with the first element, then repeatedly combine the running result with the next element: <code>myreducer(add, [1, 2, 3, 4])</code> computes <code>add(add(add(1, 2), 3), 4)</code>.</p>
+
+
+          </div>
+        </section>
+
+
 
         <section>
 
@@ -1311,6 +1439,14 @@ print(flatten_list(nested))     # [1, 2, 3, 4, 5]
               <td>8 In-Place Moves</td>
 
               <td><code>xors</code>, <code>reverse_in_place</code>, <code>shift_left</code>, <code>shift_left_k</code></td>
+
+            </tr>
+
+            <tr>
+
+              <td>9 Loop Explorations</td>
+
+              <td><code>all_digits</code>, <code>mymapper</code>, <code>myreducer</code></td>
 
             </tr>
 
